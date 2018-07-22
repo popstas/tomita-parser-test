@@ -1,4 +1,4 @@
-Тест использование томита-парсера для popstas/yandex-dialogs-whatis
+Тест использования томита-парсера для popstas/yandex-dialogs-whatis
 
 #### Ссылки:
 - https://tech.yandex.ru/tomita/doc/tutorial/concept/about-docpage/
