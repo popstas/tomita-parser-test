@@ -75,13 +75,25 @@ S -> Date interp (WhatWhere.When)
      Where;
 
 // на полу сервер
+S -> Where
+     Noun interp (WhatWhere.What);
+
 // на полу ключ от сейфа
 S -> Where
-     Noun<gram="им">|NN interp (WhatWhere.What);
+     NN interp (WhatWhere.What);
 
 // сервер на полу
+S -> Noun interp (WhatWhere.What)
+     Where;
+
 // ключ от сейфа на шкафу
-S -> Noun<gram="им">|NN interp (WhatWhere.What)
+S -> NN interp (WhatWhere.What)
+     Where;
+
+// я положил ключ от сейфа на шкаф
+S -> Word<gram="SPRO"> interp (WhatWhere.Who)
+     Verb interp (WhatWhere.Action::not_norm)
+     NN interp (WhatWhere.What)
      Where;
 
 // меня зовут Петя
@@ -93,6 +105,15 @@ S -> Word<gram="SPRO"> interp (WhatWhere.Who)
 S -> Word<gram="SPRO"> interp (WhatWhere.Who)
      Verb interp (WhatWhere.Action)
      Adv interp (WhatWhere.Where);
+
+
+
+
+// нерабочие грамматики
+
+
+// TODO: remove
+S -> Word<kwtype="date"> interp (WhatWhere.Date; Test.Date2);
 
 // - 27 июля мы будем играть на гитаре у костра
 S -> Date interp (WhatWhere.When)

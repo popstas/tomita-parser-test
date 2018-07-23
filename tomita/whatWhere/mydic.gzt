@@ -20,7 +20,7 @@ TAuxDicArticle "ЧтоГде"
     key = { "tomita:main.cxx" type=CUSTOM }
 }
 
-/* TAuxDicArticle "Время"
+TAuxDicArticle "дата"
 {
-    key = { "tomita:main.cxx" type=CUSTOM }
-} */
+    key = { "alg:date" type=CUSTOM }
+}
