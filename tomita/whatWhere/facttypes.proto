@@ -18,6 +18,15 @@ message WhatWhere: NFactType.TFact
   optional string Action = 5;
 }
 
+message Test: NFactType.TFact 
+{
+  optional string VV = 1;
+  optional string PP = 2;
+  optional string ActionObject = 3;
+  optional string NounList = 4;
+  optional string Chuckcha = 5;
+}
+
 message Event: NFactType.TFact
 {
     optional string Time = 1;

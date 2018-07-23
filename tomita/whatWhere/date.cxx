@@ -22,3 +22,9 @@ Date -> Day interp (Date.Day)
         // месяц и год: "июнь 2009"
 Date -> Month interp (Date.Month)
         Year interp (Date.Year);
+
+        // - день недели: "во вторник"
+Date -> 'во вторник' interp (Date.DayOfWeek);
+
+        // день недели: "в среду"
+Date -> 'в' DayOfWeek<gram="ед, вин"> interp (Date.DayOfWeek);
