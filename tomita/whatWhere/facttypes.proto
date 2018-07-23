@@ -25,6 +25,7 @@ message Test: NFactType.TFact
   optional string ActionObject = 3;
   optional string NounList = 4;
   optional string Chuckcha = 5;
+  optional string NN = 6;
 }
 
 message Event: NFactType.TFact

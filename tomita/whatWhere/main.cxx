@@ -15,6 +15,10 @@ _PP -> Prep Noun;
 _PP -> Prep Adj Noun;
 PP -> _PP interp (Test.PP);
 
+// ключ от сейфа
+_NN -> Noun<gram="им"> Prep Noun<gram="род">;
+NN -> _NN interp (Test.NN);
+
 // чукча-стайл (пятница пить пиво)
 // _Chuckcha -> Noun<gram="ед, им"> Word<gram="inf"> Noun<gram="ед, им">;
 // Chuckcha -> _Chuckcha interp (Test.Chuckcha);
@@ -34,7 +38,7 @@ NounList -> _NounList interp (WhatWhere.What; Test.NounList);
 // варианты "запомни"
 
 // трава находится на дворе
-S -> Noun interp (WhatWhere.What) Verb interp (WhatWhere.Action::not_norm) Where;
+S -> Noun|NN interp (WhatWhere.What) Verb interp (WhatWhere.Action::not_norm) Where;
 
 // на дворе находится трава
 S -> Where Verb interp (WhatWhere.Action::not_norm) Noun interp (WhatWhere.What);
@@ -45,15 +49,15 @@ S -> Word<gram="persn"> interp (WhatWhere.Who) Verb interp (WhatWhere.Action::no
 // Вова лежит на диване
 S -> Word<gram="persn"> interp (WhatWhere.Who) Verb interp (WhatWhere.Action::not_norm) Where;
 
-// в магазине надо купить молоко
+// в магазине (надо) купить молоко
 S -> Where
-     Adv
+     Adv*
      Word<gram="inf"> interp (WhatWhere.Action::not_norm)
      Noun interp (WhatWhere.What);
 
-// - в магазине надо купить молоко ...
+// в магазине (надо) купить молоко ...
 S -> Where
-     Adv
+     Adv*
      Word<gram="inf"> interp (WhatWhere.Action::not_norm)
      NounList;
 
@@ -71,8 +75,24 @@ S -> Date interp (WhatWhere.When)
      Where;
 
 // на полу сервер
+// на полу ключ от сейфа
 S -> Where
-     Noun<gram="им"> interp (WhatWhere.What);
+     Noun<gram="им">|NN interp (WhatWhere.What);
+
+// сервер на полу
+// ключ от сейфа на шкафу
+S -> Noun<gram="им">|NN interp (WhatWhere.What)
+     Where;
+
+// меня зовут Петя
+S -> Word<gram="SPRO"> interp (WhatWhere.Who)
+     Verb
+     Word<gram="persn"> interp (WhatWhere.What);
+
+// я сижу дома
+S -> Word<gram="SPRO"> interp (WhatWhere.Who)
+     Verb interp (WhatWhere.Action)
+     Adv interp (WhatWhere.Where);
 
 // - 27 июля мы будем играть на гитаре у костра
 S -> Date interp (WhatWhere.When)
@@ -92,6 +112,3 @@ S -> Date interp (WhatWhere.When) Where VV Noun interp (WhatWhere.What);
 
 // - в магазине надо купить молоко сосиски и пакеты
 S -> Where Adv Verb interp (WhatWhere.Action::not_norm) Noun* interp (WhatWhere.What);
-
-// - среда кушать котлета
-S -> Date interp (WhatWhere.When) Verb interp (WhatWhere.Action::not_norm) Noun interp (WhatWhere.What);
