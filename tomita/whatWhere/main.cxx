@@ -3,7 +3,7 @@
 
 // будет стоять
 _VV -> Word<gram="indic"> Word<gram="inf">;
-VV -> _VV interp (Test.VV::not_norm);
+VV -> _VV interp (WhatWhere.Action::not_norm; Test.VV::not_norm);
 
 // - играть на гитаре
 _ActionObject -> Word<gram="inf"> PP;
@@ -25,6 +25,8 @@ NN -> _NN interp (Test.NN);
 
 // на столе
 Where -> PP interp (WhatWhere.Where);
+
+Person -> Word<gram="persn"> interp (WhatWhere.Who);
 
 // молоко сосиски
 // молоко и сосиски
@@ -74,6 +76,46 @@ S -> Date interp (WhatWhere.When)
      Noun interp (WhatWhere.What)
      Where;
 
+// сегодня будет жарко
+// сегодня в Тагиле будет жарко
+// * в прошлый четверг я работал дома
+S -> Date interp (WhatWhere.When)
+     (Where interp (WhatWhere.Where))
+     Verb interp (WhatWhere.Action)
+     Adv interp (WhatWhere.What);
+
+// в следующую пятницу Вася поедет в сад
+S -> Date interp (WhatWhere.When)
+     Person
+     Verb interp (WhatWhere.Action)
+     Where interp (WhatWhere.Where);
+
+// вчера я был в гостях (на даче)
+// завтра солнце взойдет
+// послезавтра снег
+S -> Date interp (WhatWhere.When)
+     (Word<gram="persn"> interp (WhatWhere.What))
+     (Noun interp (WhatWhere.What))
+     (Verb interp (WhatWhere.Action))
+     (Where interp (WhatWhere.Where));
+
+// в пятницу будет жара
+S -> Date interp (WhatWhere.When)
+     Verb interp (WhatWhere.Action)
+     Noun<gram="им"> interp (WhatWhere.What);
+
+// завтра надо сделать жижу
+S -> Date interp (WhatWhere.When)
+     Adv*
+     Word<gram="inf"> interp (WhatWhere.Action::not_norm)
+     Noun interp (WhatWhere.What);
+
+// завтра на дворе будет расти трава
+S -> Date interp (WhatWhere.When)
+     Where
+     VV
+     Noun interp (WhatWhere.What);
+
 // на полу сервер
 S -> Where
      Noun interp (WhatWhere.What);
@@ -103,35 +145,18 @@ S -> Word<gram="SPRO"> interp (WhatWhere.Who)
 
 // я сижу дома
 S -> Word<gram="SPRO"> interp (WhatWhere.Who)
-     Verb interp (WhatWhere.Action)
+     Verb interp (WhatWhere.Action::not_norm)
      Adv interp (WhatWhere.Where);
 
 
 
 
 // нерабочие грамматики
-// CoreDate -> AnyWord<kwtype="дата">;
-
-// TODO: remove
-// S -> CoreDate interp (WhatWhere.Date; Test.Date2);
-// S -> Word<kwtype="date"> interp (WhatWhere.Date; Test.Date2);
-// S -> Date interp (Test.Date2);
 
 // - 27 июля мы будем играть на гитаре у костра
 S -> Date interp (WhatWhere.When)
      Word<gram="SPRO"> interp (WhatWhere.Who)
      Verb
      ActionObject interp (WhatWhere.Action::not_norm)
+     PP interp (WhatWhere.What)
      Where;
-
-// - 27 июля мы будем ехать в Антоновск
-S -> Date interp (WhatWhere.When) Word<gram="SPRO"> interp (WhatWhere.Who) VV interp (WhatWhere.Action::not_norm) Where;
-
-// - завтра на дворе будет трава
-S -> Date interp (WhatWhere.When) Where Verb interp (WhatWhere.Action::not_norm) Noun interp (WhatWhere.What);
-
-// - завтра на дворе будет расти трава
-S -> Date interp (WhatWhere.When) Where VV Noun interp (WhatWhere.What);
-
-// - в магазине надо купить молоко сосиски и пакеты
-S -> Where Adv Verb interp (WhatWhere.Action::not_norm) Noun* interp (WhatWhere.What);
