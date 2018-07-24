@@ -15,12 +15,12 @@ TAuxDicArticle "день_недели"
     key = "понедельник" | "вторник" | "среда" | "четверг" | "пятница" | "суббота" | "воскресенье"
 }
 
-TAuxDicArticle "ЧтоГде"
-{
-    key = { "tomita:main.cxx" type=CUSTOM }
-}
-
 TAuxDicArticle "дата"
 {
     key = { "alg:date" type=CUSTOM }
+}
+
+TAuxDicArticle "ЧтоГде"
+{
+    key = { "tomita:main.cxx" type=CUSTOM }
 }

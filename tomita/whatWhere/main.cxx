@@ -110,10 +110,12 @@ S -> Word<gram="SPRO"> interp (WhatWhere.Who)
 
 
 // нерабочие грамматики
-
+// CoreDate -> AnyWord<kwtype="дата">;
 
 // TODO: remove
-S -> Word<kwtype="date"> interp (WhatWhere.Date; Test.Date2);
+// S -> CoreDate interp (WhatWhere.Date; Test.Date2);
+// S -> Word<kwtype="date"> interp (WhatWhere.Date; Test.Date2);
+// S -> Date interp (Test.Date2);
 
 // - 27 июля мы будем играть на гитаре у костра
 S -> Date interp (WhatWhere.When)
