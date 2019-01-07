@@ -120,7 +120,7 @@ S -> When
 
 S -> When
      Where
-     Verb interp (WhatWhere.Action);
+     Verb interp (WhatWhere.Action)
      Noun interp (WhatWhere.What);
 
 // на полу сервер
