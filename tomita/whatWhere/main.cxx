@@ -23,6 +23,8 @@ NN -> _NN interp (Test.NN);
 // _Chuckcha -> Noun<gram="ед, им"> Word<gram="inf"> Noun<gram="ед, им">;
 // Chuckcha -> _Chuckcha interp (Test.Chuckcha);
 
+// вчера
+When -> Date interp (WhatWhere.When);
 // на столе
 Where -> PP interp (WhatWhere.Where);
 
@@ -64,13 +66,13 @@ S -> Where
      NounList;
 
 // 21 июля мы провели эксперимент
-S -> Date interp (WhatWhere.When)
+S -> When
      Word<gram="SPRO"> interp (WhatWhere.Who)
      Verb interp (WhatWhere.Action::not_norm)
      Noun interp (WhatWhere.What);
 
 // 21 июля мы провели эксперимент на кухне
-S -> Date interp (WhatWhere.When)
+S -> When
      Word<gram="SPRO"> interp (WhatWhere.Who)
      Verb interp (WhatWhere.Action::not_norm)
      Noun interp (WhatWhere.What)
@@ -79,13 +81,13 @@ S -> Date interp (WhatWhere.When)
 // сегодня будет жарко
 // сегодня в Тагиле будет жарко
 // * в прошлый четверг я работал дома
-S -> Date interp (WhatWhere.When)
-     (Where interp (WhatWhere.Where))
+S -> When
+     (Where)
      Verb interp (WhatWhere.Action)
      Adv interp (WhatWhere.What);
 
 // в следующую пятницу Вася поедет в сад
-S -> Date interp (WhatWhere.When)
+S -> When
      Person
      Verb interp (WhatWhere.Action)
      Where interp (WhatWhere.Where);
@@ -93,27 +95,32 @@ S -> Date interp (WhatWhere.When)
 // вчера я был в гостях (на даче)
 // завтра солнце взойдет
 // послезавтра снег
-S -> Date interp (WhatWhere.When)
+S -> When
      (Word<gram="persn"> interp (WhatWhere.What))
      (Noun interp (WhatWhere.What))
      (Verb interp (WhatWhere.Action))
      (Where interp (WhatWhere.Where));
 
 // в пятницу будет жара
-S -> Date interp (WhatWhere.When)
+S -> When
      Verb interp (WhatWhere.Action)
      Noun<gram="им"> interp (WhatWhere.What);
 
 // завтра надо сделать жижу
-S -> Date interp (WhatWhere.When)
+S -> When
      Adv*
      Word<gram="inf"> interp (WhatWhere.Action::not_norm)
      Noun interp (WhatWhere.What);
 
 // завтра на дворе будет расти трава
-S -> Date interp (WhatWhere.When)
+S -> When
      Where
      VV
+     Noun interp (WhatWhere.What);
+
+S -> When
+     Where
+     Verb interp (WhatWhere.Action);
      Noun interp (WhatWhere.What);
 
 // на полу сервер
